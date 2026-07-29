@@ -1,18 +1,37 @@
 export default function About() {
   return (
-    <main className="px-6 py-16 max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold text-gray-900">About ElSalvadorHidden</h1>
+    <main className="bg-white">
+      <section className="mx-auto max-w-4xl px-6 py-20 lg:px-8 lg:py-28">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">
+          About the platform
+        </p>
 
-      <p className="mt-6 text-gray-700 leading-relaxed">
-        ElSalvadorHidden was created to showcase the beauty, culture, and hidden gems of El Salvador.
-        Our mission is to help travelers discover authentic experiences — from breathtaking landscapes
-        to local traditions and unforgettable adventures.
-      </p>
+        <h1 className="mt-3 text-4xl font-bold tracking-tight text-gray-950 sm:text-5xl">
+          About El Salvador Hidden
+        </h1>
 
-      <p className="mt-4 text-gray-700 leading-relaxed">
-        Whether you're exploring beaches, volcanoes, waterfalls, or historic towns, our platform guides
-        you through the best destinations and provides AI-powered tools to plan your perfect trip.
-      </p>
+        <div className="mt-8 space-y-6 text-lg leading-8 text-gray-700">
+          <p>
+            El Salvador Hidden was created to showcase the beauty, culture, and
+            hidden gems of El Salvador. Our mission is to help travelers
+            discover authentic experiences, from breathtaking landscapes to
+            local traditions and unforgettable adventures.
+          </p>
+
+          <p>
+            Whether you are exploring beaches, volcanoes, waterfalls, or
+            historic towns, our platform guides you through meaningful
+            destinations and provides AI-powered tools to help you plan your
+            perfect trip.
+          </p>
+
+          <p>
+            The goal is to go beyond the typical travel guide by highlighting
+            places, stories, and experiences that help visitors understand the
+            country in a more authentic way.
+          </p>
+        </div>
+      </section>
     </main>
   );
 }

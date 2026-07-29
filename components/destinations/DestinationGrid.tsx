@@ -1,5 +1,5 @@
 import type { Destination } from "@/data/destinations";
-import DestinationCard from "./DestinationCard";
+import DestinationCard from "@/components/destinations/DestinationCard";
 
 type DestinationGridProps = {
   destinations: Destination[];
