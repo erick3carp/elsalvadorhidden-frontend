@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import DestinationGrid from "@/components/destinations/DestinationGrid";
 import { getFeaturedDestinations } from "@/data/destinations";
@@ -87,13 +88,23 @@ export default function Home() {
             </h2>
           </div>
 
-          <div>
+          <div className="space-y-8">
             <p className="text-lg leading-8 text-gray-600">
               El Salvador Hidden is being built to help travelers move beyond
               generic recommendations. The goal is to highlight meaningful
               destinations, practical travel information, local culture, and
               places that deserve to be discovered.
             </p>
+
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg">
+              <Image
+                src="/images/site/home/culture.JPEG"
+                alt="Ornate theater interior with painted dome, chandelier, and curved balconies"
+                fill
+                sizes="(min-width: 1024px) 55vw, 100vw"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -210,6 +221,16 @@ export default function Home() {
                 Find useful details, travel tips, highlights, and inspiration
                 to help you plan a better experience.
               </p>
+            </div>
+
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-sm lg:col-span-3 lg:aspect-[16/5]">
+              <Image
+                src="/images/site/home/flower.JPEG"
+                alt="Pink flowers blooming among sunlit green foliage"
+                fill
+                sizes="(min-width: 1024px) 80vw, 100vw"
+                className="object-cover"
+              />
             </div>
           </div>
         </div>
