@@ -1,12 +1,16 @@
+import Image from "next/image";
+
 export default function AIPlanner() {
   return (
-    <main className="px-6 py-16 max-w-3xl mx-auto">
-      <h1 className="text-4xl font-bold text-gray-900">AI Trip Planner</h1>
-      <p className="mt-4 text-gray-600">
-        Build your perfect itinerary using our AI-powered travel planner. Enter your preferences and let the AI design your trip.
-      </p>
+    <main className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div className="grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-start">
+        <div>
+          <h1 className="text-4xl font-bold text-gray-900">AI Trip Planner</h1>
+          <p className="mt-4 text-gray-600">
+            Build your perfect itinerary using our AI-powered travel planner. Enter your preferences and let the AI design your trip.
+          </p>
 
-      <form className="mt-10 space-y-6">
+          <form className="mt-10 space-y-6">
         <div>
           <label className="block text-gray-700 font-medium">Travel Dates</label>
           <input
@@ -25,10 +29,22 @@ export default function AIPlanner() {
           />
         </div>
 
-        <button className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
-          Generate Itinerary
-        </button>
-      </form>
+            <button className="rounded-lg bg-emerald-700 px-6 py-3 text-white shadow transition hover:bg-emerald-800">
+              Generate Itinerary
+            </button>
+          </form>
+        </div>
+
+        <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg lg:mt-2">
+          <Image
+            src="/images/site/home/binaes.JPEG"
+            alt="Illuminated BINAES library and colorful San Salvador sign at night"
+            fill
+            sizes="(min-width: 1024px) 42vw, 100vw"
+            className="object-cover"
+          />
+        </div>
+      </div>
     </main>
   );
 }

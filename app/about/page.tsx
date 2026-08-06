@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function About() {
   return (
     <main className="bg-white">
@@ -30,6 +32,16 @@ export default function About() {
             places, stories, and experiences that help visitors understand the
             country in a more authentic way.
           </p>
+        </div>
+
+        <div className="relative mt-12 aspect-[4/3] overflow-hidden rounded-3xl shadow-lg sm:aspect-[16/9]">
+          <Image
+            src="/images/site/about/tree-rooftop.jpg"
+            alt="Large flowering tree above rustic tile-roofed homes in the Salvadoran countryside"
+            fill
+            sizes="(min-width: 1024px) 896px, 100vw"
+            className="object-cover"
+          />
         </div>
       </section>
     </main>
