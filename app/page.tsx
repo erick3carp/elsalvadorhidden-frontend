@@ -38,7 +38,7 @@ export default function Home() {
           className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.24),transparent_45%)]"
         />
 
-        <div className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
+        <div className="relative mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8 lg:py-28">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-300">
               Discover El Salvador differently
@@ -77,7 +77,7 @@ export default function Home() {
 
       {/* Introduction */}
       <section className="bg-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8 lg:py-24">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-14 lg:px-8 lg:py-20">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">
               More than a travel guide
@@ -96,7 +96,7 @@ export default function Home() {
               places that deserve to be discovered.
             </p>
 
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg sm:aspect-[16/10]">
               <Image
                 src="/images/site/home/culture.JPEG"
                 alt="Ornate theater interior with painted dome, chandelier, and curved balconies"
@@ -111,7 +111,7 @@ export default function Home() {
 
       {/* Featured destinations */}
       <section className="bg-gray-50">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <div className="max-w-2xl">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">
@@ -147,7 +147,7 @@ export default function Home() {
 
       {/* Explore by interest */}
       <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
           <div className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">
               Explore by interest
@@ -189,7 +189,7 @@ export default function Home() {
 
       {/* Platform value */}
       <section className="bg-emerald-50">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
           <div className="grid gap-12 lg:grid-cols-3">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">
@@ -223,7 +223,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-sm lg:col-span-3 lg:aspect-[16/5]">
+            <div className="relative h-[280px] overflow-hidden rounded-3xl shadow-sm sm:h-[320px] lg:col-span-3 lg:h-[360px]">
               <Image
                 src="/images/site/home/flower.JPEG"
                 alt="Pink flowers blooming among sunlit green foliage"
@@ -238,11 +238,11 @@ export default function Home() {
 
       {/* Trip planner preview */}
       <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
           <div className="overflow-hidden rounded-3xl bg-gray-950 px-6 py-14 text-white sm:px-10 lg:flex lg:items-center lg:justify-between lg:px-14">
             <div className="max-w-2xl">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">
-                Coming later
+                Coming soon
               </p>
 
               <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
@@ -270,7 +270,7 @@ export default function Home() {
 
       {/* Final CTA */}
       <section className="border-t border-gray-200 bg-gray-50">
-        <div className="mx-auto max-w-4xl px-6 py-20 text-center lg:px-8">
+        <div className="mx-auto max-w-4xl px-6 py-16 text-center lg:px-8">
           <h2 className="text-3xl font-bold tracking-tight text-gray-950 sm:text-4xl">
             Begin discovering El Salvador
           </h2>

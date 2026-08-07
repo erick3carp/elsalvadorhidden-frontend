@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import DestinationExplorer from "@/components/DestinationExplorer";
-import { getPublishedDestinations } from "@/data/destinations";
+import {
+  getPublishedDestinations,
+  getUnpublishedDestinations,
+} from "@/data/destinations";
 
 export const metadata: Metadata = {
   title: "Destinations",
@@ -11,6 +14,7 @@ export const metadata: Metadata = {
 
 export default function DestinationsPage() {
   const destinations = getPublishedDestinations();
+  const unpublishedDestinations = getUnpublishedDestinations();
 
   return (
     <main>
@@ -41,6 +45,23 @@ export default function DestinationsPage() {
           <DestinationExplorer destinations={destinations} />
         </div>
       </section>
+
+      {unpublishedDestinations.length > 0 && (
+        <section className="border-t border-emerald-100 bg-emerald-50">
+          <div className="mx-auto max-w-4xl px-6 py-12 text-center lg:px-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">
+              Guide in progress
+            </p>
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-gray-950 sm:text-3xl">
+              More destinations coming soon
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl leading-7 text-gray-600">
+              We are preparing photography and travel details for additional
+              destination guides across El Salvador.
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="border-t border-gray-200 bg-white">

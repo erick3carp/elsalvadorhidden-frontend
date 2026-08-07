@@ -16,17 +16,10 @@ export default function DestinationExplorer({
 }: DestinationExplorerProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [selectedDepartment, setSelectedDepartment] = useState("All");
 
   const categories = useMemo(() => {
     return Array.from(
       new Set(destinations.map((destination) => destination.category)),
-    ).sort();
-  }, [destinations]);
-
-  const departments = useMemo(() => {
-    return Array.from(
-      new Set(destinations.map((destination) => destination.department)),
     ).sort();
   }, [destinations]);
 
@@ -37,7 +30,9 @@ export default function DestinationExplorer({
       const matchesSearch =
         normalizedSearch.length === 0 ||
         destination.name.toLowerCase().includes(normalizedSearch) ||
-        destination.department.toLowerCase().includes(normalizedSearch) ||
+        destination.department
+          ?.toLowerCase()
+          .includes(normalizedSearch) ||
         destination.municipality
           ?.toLowerCase()
           .includes(normalizedSearch) ||
@@ -53,28 +48,21 @@ export default function DestinationExplorer({
         selectedCategory === "All" ||
         destination.category === selectedCategory;
 
-      const matchesDepartment =
-        selectedDepartment === "All" ||
-        destination.department === selectedDepartment;
-
-      return matchesSearch && matchesCategory && matchesDepartment;
+      return matchesSearch && matchesCategory;
     });
   }, [
     destinations,
     searchQuery,
     selectedCategory,
-    selectedDepartment,
   ]);
 
   const filtersAreActive =
     searchQuery.trim() !== "" ||
-    selectedCategory !== "All" ||
-    selectedDepartment !== "All";
+    selectedCategory !== "All";
 
   function resetFilters() {
     setSearchQuery("");
     setSelectedCategory("All");
-    setSelectedDepartment("All");
   }
 
   return (
@@ -93,12 +81,11 @@ export default function DestinationExplorer({
           </h2>
 
           <p className="mt-4 leading-7 text-gray-600">
-            Search by destination, department, municipality, category, or
-            travel interest.
+            Search by destination, location, category, or travel interest.
           </p>
         </div>
 
-        <div className="mt-8 grid gap-5 lg:grid-cols-[2fr_1fr_1fr]">
+        <div className="mt-8 grid gap-5 lg:grid-cols-[2fr_1fr]">
           <div>
             <label
               htmlFor="destination-search"
@@ -145,31 +132,6 @@ export default function DestinationExplorer({
             </select>
           </div>
 
-          <div>
-            <label
-              htmlFor="department-filter"
-              className="block text-sm font-semibold text-gray-900"
-            >
-              Department
-            </label>
-
-            <select
-              id="department-filter"
-              value={selectedDepartment}
-              onChange={(event) =>
-                setSelectedDepartment(event.target.value)
-              }
-              className="mt-2 w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-950 outline-none transition focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20"
-            >
-              <option value="All">All departments</option>
-
-              {departments.map((department) => (
-                <option key={department} value={department}>
-                  {department}
-                </option>
-              ))}
-            </select>
-          </div>
         </div>
 
         <div className="mt-6 flex flex-col gap-3 border-t border-gray-200 pt-6 sm:flex-row sm:items-center sm:justify-between">
