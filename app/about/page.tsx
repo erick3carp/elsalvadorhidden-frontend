@@ -22,15 +22,16 @@ export default function About() {
 
           <p>
             Whether you are exploring beaches, volcanoes, waterfalls, or
-            historic towns, our platform guides you through meaningful
-            destinations and provides AI-powered tools to help you plan your
-            perfect trip.
+            historic towns, the platform helps you discover meaningful
+            destinations through practical travel information and local
+            insights. An AI-powered trip planner is also in development to help
+            travelers create more personalized itineraries in the future.
           </p>
 
           <p>
-            The goal is to go beyond the typical travel guide by highlighting
-            places, stories, and experiences that help visitors understand the
-            country in a more authentic way.
+            Our goal is to go beyond the typical travel guide by highlighting
+            places, stories, and experiences that help visitors understand El
+            Salvador in a more authentic way.
           </p>
         </div>
 

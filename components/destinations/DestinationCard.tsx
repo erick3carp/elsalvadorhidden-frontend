@@ -25,7 +25,7 @@ export default function DestinationCard({
           {!imageFailed ? (
             <Image
               src={destination.heroImage}
-              alt={`${destination.name}, ${destination.department}, El Salvador`}
+              alt={`${destination.name}, El Salvador`}
               fill
               sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
               className="object-cover transition duration-500 group-hover:scale-105"
@@ -50,9 +50,11 @@ export default function DestinationCard({
         </div>
 
         <div className="flex h-full flex-col p-6">
-          <p className="text-sm font-medium text-emerald-700">
-            {destination.department}
-          </p>
+          {destination.department && (
+            <p className="text-sm font-medium text-emerald-700">
+              {destination.department}
+            </p>
+          )}
 
           <h2 className="mt-2 text-2xl font-bold tracking-tight text-gray-900 transition group-hover:text-emerald-800">
             {destination.name}

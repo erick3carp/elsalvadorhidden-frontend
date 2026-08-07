@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -41,6 +42,12 @@ export async function generateMetadata({
       description: destination.description,
       type: "article",
       url: `/destinations/${destination.slug}`,
+      images: [
+        {
+          url: destination.heroImage,
+          alt: `${destination.name}, El Salvador`,
+        },
+      ],
     },
   };
 }
@@ -55,9 +62,12 @@ export default async function DestinationPage({
     notFound();
   }
 
-  const locationLabel = destination.municipality
-    ? `${destination.municipality}, ${destination.department}`
-    : destination.department;
+  const locationLabel = [
+    destination.municipality,
+    destination.department,
+  ]
+    .filter(Boolean)
+    .join(", ");
 
   return (
     <main>
@@ -83,9 +93,11 @@ export default async function DestinationPage({
               {destination.name}
             </h1>
 
-            <p className="mt-5 text-lg font-medium text-emerald-100">
-              {locationLabel}
-            </p>
+            {locationLabel && (
+              <p className="mt-5 text-lg font-medium text-emerald-100">
+                {locationLabel}
+              </p>
+            )}
 
             <p className="mt-7 max-w-3xl text-lg leading-8 text-emerald-50">
               {destination.description}
@@ -105,26 +117,51 @@ export default async function DestinationPage({
         </div>
       </section>
 
-      {/* Image placeholder */}
+      {/* Destination photography */}
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-6 pt-12 lg:px-8">
-          <div className="flex min-h-80 items-center justify-center rounded-3xl bg-emerald-900 px-6 text-center text-white sm:min-h-96">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-300">
-                Destination photography
-              </p>
-
-              <p className="mt-4 text-3xl font-bold">
-                {destination.name}
-              </p>
-
-              <p className="mt-3 text-emerald-100">
-                A featured photograph will be added here.
-              </p>
-            </div>
+          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-emerald-950 shadow-lg sm:aspect-[16/9]">
+            <Image
+              src={destination.heroImage}
+              alt={`${destination.name}, El Salvador`}
+              fill
+              preload
+              sizes="(min-width: 1280px) 1216px, (min-width: 1024px) calc(100vw - 64px), calc(100vw - 48px)"
+              className="object-cover"
+            />
           </div>
         </div>
       </section>
+
+      {destination.gallery.length > 0 && (
+        <section className="bg-white">
+          <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">
+              Photo gallery
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-gray-950">
+              See more of {destination.name}
+            </h2>
+
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {destination.gallery.map((image, index) => (
+                <div
+                  key={image}
+                  className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-emerald-950 shadow-sm"
+                >
+                  <Image
+                    src={image}
+                    alt={`${destination.name} gallery view ${index + 1}`}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition duration-500 hover:scale-105"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Overview */}
       <section className="bg-white">
@@ -149,14 +186,16 @@ export default async function DestinationPage({
             </h2>
 
             <dl className="mt-6 space-y-5">
-              <div>
-                <dt className="text-sm font-semibold uppercase tracking-wide text-emerald-700">
-                  Department
-                </dt>
-                <dd className="mt-1 text-gray-800">
-                  {destination.department}
-                </dd>
-              </div>
+              {destination.department && (
+                <div>
+                  <dt className="text-sm font-semibold uppercase tracking-wide text-emerald-700">
+                    Department
+                  </dt>
+                  <dd className="mt-1 text-gray-800">
+                    {destination.department}
+                  </dd>
+                </div>
+              )}
 
               {destination.municipality && (
                 <div>
@@ -178,14 +217,16 @@ export default async function DestinationPage({
                 </dd>
               </div>
 
-              <div>
-                <dt className="text-sm font-semibold uppercase tracking-wide text-emerald-700">
-                  Best time to visit
-                </dt>
-                <dd className="mt-1 text-gray-800">
-                  {destination.bestTimeToVisit}
-                </dd>
-              </div>
+              {destination.bestTimeToVisit && (
+                <div>
+                  <dt className="text-sm font-semibold uppercase tracking-wide text-emerald-700">
+                    Best time to visit
+                  </dt>
+                  <dd className="mt-1 text-gray-800">
+                    {destination.bestTimeToVisit}
+                  </dd>
+                </div>
+              )}
 
               {destination.estimatedVisitDuration && (
                 <div>
