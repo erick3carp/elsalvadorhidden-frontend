@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Azure Functions local settings
+api/local.settings.json
+
+# Azure Functions generated files
+api/node_modules/
+api/dist/
