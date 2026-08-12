@@ -5,6 +5,7 @@ import {
   InvocationContext,
 } from "@azure/functions";
 import { CosmosClient } from "@azure/cosmos";
+import { EmailClient } from "@azure/communication-email";
 import { randomUUID } from "crypto";
 
 type ContactRequestBody = {
@@ -19,6 +20,11 @@ const cosmosKey = process.env.COSMOS_KEY;
 const databaseName = process.env.COSMOS_DATABASE;
 const containerName = process.env.COSMOS_CONTACT_CONTAINER;
 
+const communicationConnectionString =
+  process.env.COMMUNICATION_SERVICES_CONNECTION_STRING;
+const emailSender = process.env.EMAIL_SENDER;
+const emailRecipient = process.env.EMAIL_RECIPIENT;
+
 function getContainer() {
   if (!cosmosEndpoint || !cosmosKey || !databaseName || !containerName) {
     throw new Error("Cosmos DB configuration is incomplete.");
@@ -30,6 +36,14 @@ function getContainer() {
   });
 
   return client.database(databaseName).container(containerName);
+}
+
+function getEmailClient() {
+  if (!communicationConnectionString || !emailSender || !emailRecipient) {
+    throw new Error("Email configuration is incomplete.");
+  }
+
+  return new EmailClient(communicationConnectionString);
 }
 
 export async function contact(
@@ -106,6 +120,48 @@ export async function contact(
     context.log("Contact message saved to Cosmos DB.", {
       id: contactMessage.id,
       subject: contactMessage.subject,
+    });
+
+    const emailClient = getEmailClient();
+
+    const emailMessage = {
+      senderAddress: emailSender!,
+      content: {
+        subject: `New El Salvador Hidden contact: ${subject}`,
+        plainText: `
+New contact form submission
+
+Name: ${name}
+Email: ${email}
+Subject: ${subject}
+
+Message:
+${message}
+
+Submission ID: ${contactMessage.id}
+Submitted: ${contactMessage.createdAt}
+        `.trim(),
+      },
+      recipients: {
+        to: [
+          {
+            address: emailRecipient!,
+          },
+        ],
+      },
+      replyTo: [
+        {
+          address: email,
+        },
+      ],
+    };
+
+    const poller = await emailClient.beginSend(emailMessage);
+    const emailResult = await poller.pollUntilDone();
+
+    context.log("Contact notification email processed.", {
+      messageId: emailResult.id,
+      status: emailResult.status,
     });
 
     return {
